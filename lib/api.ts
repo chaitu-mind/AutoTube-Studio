@@ -2,7 +2,8 @@ import axios from "axios";
 
 const api = axios.create({
   baseURL:
-    process.env.NEXT_PUBLIC_API_URL || "http://localhost:8001/api/v1/autotube",
+    process.env.NEXT_PUBLIC_API_URL ||
+    "https://api.tattvamind.com/api/v1/autotube",
   headers: { "Content-Type": "application/json" },
   withCredentials: false,
 });
