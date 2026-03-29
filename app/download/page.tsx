@@ -5,17 +5,22 @@ import {
   MonitorPlay,
   Terminal,
   ArrowRight,
+  AlertTriangle,
 } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+
+const RELEASES_BASE =
+  "https://github.com/Tattva-Mind/autotube-studio-releases/releases/latest/download";
 
 const platforms = [
   {
     icon: Apple,
     name: "macOS",
-    desc: "Apple Silicon & Intel",
+    desc: "Apple Silicon (M1/M2/M3/M4)",
     badge: "Recommended",
     ext: ".dmg",
+    href: `${RELEASES_BASE}/AutoTube-Studio.dmg`,
     color: "from-zinc-700 to-zinc-800",
   },
   {
@@ -24,6 +29,7 @@ const platforms = [
     desc: "Windows 10 / 11 (64-bit)",
     badge: null,
     ext: ".exe",
+    href: `${RELEASES_BASE}/AutoTube-Studio-Setup.exe`,
     color: "from-blue-900 to-blue-950",
   },
   {
@@ -32,6 +38,7 @@ const platforms = [
     desc: "Ubuntu, Debian, Arch",
     badge: null,
     ext: ".AppImage",
+    href: `${RELEASES_BASE}/AutoTube-Studio.AppImage`,
     color: "from-orange-900 to-red-950",
   },
 ];
@@ -92,13 +99,65 @@ export default function DownloadPage() {
                   {p.name}
                 </h3>
                 <p className="text-xs text-zinc-500 mb-4">{p.desc}</p>
-                <button className="w-full py-2 rounded-lg bg-violet-600/20 border border-violet-500/30 text-violet-300 text-xs font-medium hover:bg-violet-600/30 transition-colors flex items-center justify-center gap-1.5">
+                <a
+                  href={p.href}
+                  className="w-full py-2 rounded-lg bg-violet-600/20 border border-violet-500/30 text-violet-300 text-xs font-medium hover:bg-violet-600/30 transition-colors flex items-center justify-center gap-1.5"
+                >
                   <Download className="w-3 h-3" />
                   Download {p.ext}
-                  <span className="text-zinc-500 ml-1">(coming soon)</span>
-                </button>
+                </a>
               </div>
             ))}
+          </div>
+
+          {/* macOS Gatekeeper notice */}
+          <div className="mb-10 rounded-2xl border border-amber-500/30 bg-amber-500/8 p-5">
+            <div className="flex items-start gap-3">
+              <AlertTriangle className="w-5 h-5 text-amber-400 mt-0.5 shrink-0" />
+              <div>
+                <h3 className="text-sm font-semibold text-amber-300 mb-1">
+                  macOS users — &quot;damaged app&quot; warning
+                </h3>
+                <p className="text-xs text-zinc-400 mb-3">
+                  macOS blocks apps that aren&apos;t signed with an Apple
+                  Developer certificate. AutoTube Studio is safe — follow one of
+                  these steps after downloading:
+                </p>
+                <div className="space-y-3">
+                  <div>
+                    <p className="text-xs font-semibold text-zinc-300 mb-1">
+                      Option 1 — Terminal (easiest, one command)
+                    </p>
+                    <code className="block text-xs bg-black/40 border border-white/10 rounded-lg px-3 py-2 text-green-400 font-mono">
+                      xattr -cr /Applications/AutoTube\ Studio.app
+                    </code>
+                    <p className="text-xs text-zinc-500 mt-1">
+                      Then open the app normally.
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-zinc-300 mb-1">
+                      Option 2 — System Settings
+                    </p>
+                    <ol className="text-xs text-zinc-400 space-y-0.5 list-decimal list-inside">
+                      <li>Try to open the app (it will be blocked)</li>
+                      <li>
+                        Go to{" "}
+                        <span className="text-zinc-300">
+                          System Settings → Privacy &amp; Security
+                        </span>
+                      </li>
+                      <li>
+                        Scroll down and click{" "}
+                        <span className="text-zinc-300">
+                          &quot;Open Anyway&quot;
+                        </span>
+                      </li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* System requirements */}
