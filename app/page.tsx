@@ -23,30 +23,30 @@ const features = [
   {
     icon: Bot,
     title: "Multi-Agent AI Pipeline",
-    desc: "14 specialised AI agents — Director, Script, Visuals, TTS, Music, SEO, QA, Upload — work in sequence to produce a complete video from a single prompt.",
+    desc: "Specialised AI agents work in sequence — content strategy, scripting, visuals, narration, music, SEO, QA, and upload — all triggered from a single prompt.",
     color: "from-violet-500 to-purple-600",
-    badge: "14 agents",
+    badge: "Fully automated",
   },
   {
     icon: Cpu,
-    title: "100% Local LLM",
-    desc: "All language model inference runs via Ollama on your own machine. Zero cloud AI costs, zero data privacy concerns, no internet dependency for generation.",
+    title: "100% Local AI",
+    desc: "All AI inference runs entirely on your own machine. Zero cloud AI costs, zero data privacy concerns, no internet dependency for generation.",
     color: "from-blue-500 to-cyan-500",
     badge: "Zero cloud costs",
   },
   {
     icon: ImageIcon,
     title: "AI Scene Generation",
-    desc: "ComfyUI / Stable Diffusion generates cinematic scene images for every segment of your script. Ken Burns pan-and-zoom effects bring them to life.",
+    desc: "Our AI vision engine generates cinematic scene images for every segment of your script. Ken Burns pan-and-zoom effects bring them to life.",
     color: "from-emerald-500 to-teal-500",
-    badge: "Stable Diffusion",
+    badge: "Cinematic visuals",
   },
   {
     icon: Mic,
     title: "Local Text-to-Speech",
     desc: "High-quality voice narration generated entirely on-device. Multiple voices and languages — no API fees, no limits.",
     color: "from-orange-500 to-red-500",
-    badge: "On-device TTS",
+    badge: "On-device voice",
   },
   {
     icon: Music,
@@ -82,7 +82,7 @@ const steps = [
   {
     number: "01",
     title: "Download & Launch",
-    desc: "Download AutoTube Studio for macOS, Windows, or Linux. The setup wizard connects Ollama, ComfyUI, and your YouTube account.",
+    desc: "Download AutoTube Studio for macOS, Windows, or Linux. The setup wizard guides you through connecting your AI engines and YouTube account.",
     detail: "One-time setup.",
   },
   {
@@ -94,7 +94,7 @@ const steps = [
   {
     number: "03",
     title: "Watch the Pipeline Run",
-    desc: "The live Agent Status Panel shows each of the 14 agents working in real time — from content strategy all the way to QA review.",
+    desc: "The live Agent Status Panel shows every stage of the pipeline working in real time — from content strategy all the way to QA review.",
     detail: "Full transparency.",
   },
   {
@@ -117,7 +117,7 @@ const pricingPlans = [
     features: [
       "3 video generations / month",
       "Up to 5 min videos",
-      "Local AI (Ollama + ComfyUI)",
+      "On-device AI (no cloud)",
       "1 YouTube channel",
       "Community support",
     ],
@@ -184,10 +184,10 @@ const testimonials = [
 ];
 
 const stats = [
-  { value: "14", label: "AI Agents" },
-  { value: "100%", label: "Local inference" },
+  { value: "100%", label: "Local AI" },
   { value: "~20 min", label: "Avg. generation time" },
   { value: "₹0", label: "Cloud AI costs" },
+  { value: "1-click", label: "YouTube upload" },
 ];
 
 export default function HomePage() {
@@ -205,7 +205,7 @@ export default function HomePage() {
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-violet-500/30 bg-violet-500/10 text-violet-300 text-xs font-medium mb-7">
             <Zap className="w-3 h-3" />
-            <span>Powered by local Ollama + ComfyUI — zero cloud AI costs</span>
+            <span>Runs 100% on your machine — zero cloud AI costs</span>
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tight mb-6">
@@ -216,7 +216,7 @@ export default function HomePage() {
           </h1>
 
           <p className="max-w-2xl mx-auto text-lg text-zinc-400 leading-relaxed mb-10">
-            Type a video idea. AutoTube Studio&apos;s 14-agent AI pipeline
+            Type a video idea. AutoTube Studio&apos;s intelligent AI pipeline
             writes the script, generates scenes, records narration, scores
             music, assembles the video, optimises SEO, and uploads to YouTube —
             all on your machine, in about 20 minutes.
@@ -266,13 +266,13 @@ export default function HomePage() {
                 <div className="h-3 w-28 bg-zinc-700 rounded mb-3" />
                 {[
                   "Content Strategy",
-                  "Script",
-                  "Visual Direction",
-                  "Asset Generation",
-                  "TTS",
-                  "Music",
-                  "Video Compilation",
-                  "SEO",
+                  "Script Writing",
+                  "Visual Design",
+                  "Media Generation",
+                  "Voice Narration",
+                  "Audio Scoring",
+                  "Video Assembly",
+                  "SEO Optimisation",
                 ].map((a, i) => (
                   <div
                     key={a}

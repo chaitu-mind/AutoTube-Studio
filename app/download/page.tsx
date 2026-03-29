@@ -38,9 +38,15 @@ const platforms = [
 
 const requirements = [
   { item: "16 GB RAM", note: "32 GB recommended for faster generation" },
-  { item: "Ollama", note: "Local LLM runner — free, open-source" },
-  { item: "ComfyUI", note: "For AI image generation (Stable Diffusion)" },
-  { item: "FFmpeg", note: "Video assembly — auto-installed by the app" },
+  {
+    item: "AI Language Runtime",
+    note: "Powers on-device language model inference — free",
+  },
+  {
+    item: "AI Vision Runtime",
+    note: "Powers on-device image generation — free",
+  },
+  { item: "Video Engine", note: "Video assembly — auto-installed by the app" },
   { item: "YouTube account", note: "For uploading finished videos" },
 ];
 
@@ -54,7 +60,7 @@ export default function DownloadPage() {
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-violet-500/30 bg-violet-500/10 text-violet-300 text-xs font-medium mb-5">
               <Download className="w-3 h-3" />
-              <span>Electron desktop app — macOS · Windows · Linux</span>
+              <span>Native desktop app — macOS · Windows · Linux</span>
             </div>
             <h1 className="text-4xl font-extrabold mb-4">
               Download AutoTube Studio

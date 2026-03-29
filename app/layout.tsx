@@ -4,12 +4,12 @@ import "./globals.css";
 import { AuthProvider } from "@/components/AuthProvider";
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
+  variable: "--font-display",
   subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+  variable: "--font-code",
   subsets: ["latin"],
 });
 
@@ -42,6 +42,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-black text-white">
         <AuthProvider>{children}</AuthProvider>

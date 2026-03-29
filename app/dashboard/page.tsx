@@ -268,9 +268,9 @@ export default function DashboardPage() {
                 Ready to generate your first video?
               </h3>
               <p className="text-xs text-zinc-400 leading-relaxed mb-4">
-                Download the AutoTube Studio desktop app, connect your local
-                Ollama instance and ComfyUI, link your YouTube channel, and
-                start generating fully automated faceless videos in minutes.
+                Download the AutoTube Studio desktop app, complete the one-time
+                AI setup, link your YouTube channel, and start generating fully
+                automated faceless videos in minutes.
               </p>
               <Link
                 href="/download"

@@ -37,7 +37,7 @@ const PLANS = [
       { text: "Up to 15 min per video", included: true },
       { text: "3 YouTube channels", included: true },
       { text: "1080p HD export", included: true },
-      { text: "All 14 AI agents (local)", included: true },
+      { text: "Full AI pipeline (local)", included: true },
       { text: "No watermark", included: true },
       { text: "Custom voice profiles", included: true },
       { text: "Priority processing queue", included: true },
@@ -65,9 +65,9 @@ const PLANS = [
       { text: "Up to 30 min per video", included: true },
       { text: "10 YouTube channels", included: true },
       { text: "4K export", included: true },
-      { text: "All 14 AI agents (local)", included: true },
+      { text: "Full AI pipeline (local)", included: true },
       { text: "No watermark", included: true },
-      { text: "Multi-language TTS (6 languages)", included: true },
+      { text: "Multi-language voice narration (6 languages)", included: true },
       { text: "Batch scheduling (up to 30)", included: true },
       { text: "Analytics dashboard", included: true },
       { text: "Priority support + Discord", included: true },
@@ -93,8 +93,11 @@ const PLANS = [
       { text: "Unlimited YouTube channels", included: true },
       { text: "4K export", included: true },
       { text: "No watermark", included: true },
-      { text: "All 14 AI agents (local)", included: true },
-      { text: "Multi-language TTS (12+ languages)", included: true },
+      { text: "Full AI pipeline (local)", included: true },
+      {
+        text: "Multi-language voice narration (12+ languages)",
+        included: true,
+      },
       { text: "Unlimited batch scheduling", included: true },
       { text: "Full analytics dashboard", included: true },
       { text: "White-label (remove AutoTube branding)", included: true },
@@ -107,7 +110,7 @@ const PLANS = [
 const FAQS = [
   {
     q: "Does AutoTube Studio use my computer or the cloud?",
-    a: "Your computer. AutoTube Studio runs the entire 14-agent AI pipeline locally using Ollama and ComfyUI. There are no per-video cloud compute charges — your subscription unlocks the software and enforces a fair-use quota.",
+    a: "Your computer. AutoTube Studio runs the entire AI pipeline locally on-device. There are no per-video cloud compute charges — your subscription unlocks the software and enforces a fair-use quota.",
   },
   {
     q: "What does the 7-day free trial include?",
@@ -152,9 +155,9 @@ export default function PricingPage() {
           <span className="gradient-text">with your channel</span>
         </h1>
         <p className="text-white/50 text-lg max-w-2xl mx-auto mb-6">
-          Every plan includes the full 14-agent AI pipeline running locally on
-          your machine. You provide the hardware — we provide the intelligence.
-          No per-video cloud fees, ever.
+          Every plan includes the full AI pipeline running locally on your
+          machine. You provide the hardware — we provide the intelligence. No
+          per-video cloud fees, ever.
         </p>
 
         {/* 7-day free trial callout */}
