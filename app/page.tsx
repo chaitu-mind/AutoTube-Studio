@@ -10,7 +10,6 @@ import {
   ShieldCheck,
   Download,
   Star,
-  CheckCircle,
   MonitorPlay,
   Cpu,
   Bot,
@@ -102,60 +101,6 @@ const steps = [
     title: "Preview & Publish",
     desc: "Preview the assembled video and AI-generated metadata. Edit anything you want, then upload to YouTube with one click.",
     detail: "You're in control.",
-  },
-];
-
-const pricingPlans = [
-  {
-    name: "Free",
-    price: "₹0",
-    period: "forever",
-    desc: "Perfect for trying AutoTube Studio",
-    cta: "Get started",
-    ctaHref: "/register",
-    highlight: false,
-    features: [
-      "3 video generations / month",
-      "Up to 5 min videos",
-      "On-device AI (no cloud)",
-      "1 YouTube channel",
-      "Community support",
-    ],
-  },
-  {
-    name: "Starter",
-    price: "₹999",
-    period: "/ month",
-    desc: "For serious content creators",
-    cta: "Start free trial",
-    ctaHref: "/register",
-    highlight: true,
-    features: [
-      "30 video generations / month",
-      "Up to 15 min videos",
-      "All AI features",
-      "3 YouTube channels",
-      "Priority support",
-      "Custom voice profiles",
-    ],
-  },
-  {
-    name: "Pro",
-    price: "₹2,499",
-    period: "/ month",
-    desc: "For agencies and power creators",
-    cta: "Get Pro",
-    ctaHref: "/register",
-    highlight: false,
-    features: [
-      "Unlimited video generations",
-      "Up to 30 min videos",
-      "All AI features",
-      "Unlimited YouTube channels",
-      "Dedicated support",
-      "Custom branding & watermarks",
-      "Batch scheduling",
-    ],
   },
 ];
 
@@ -395,66 +340,23 @@ export default function HomePage() {
       </section>
 
       {/* ── PRICING ── */}
-      <section id="pricing" className="py-24">
+      <section className="py-24">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-14">
+          <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-8 sm:p-10 text-center">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
               Simple, honest pricing
             </h2>
-            <p className="text-zinc-400 text-sm">
-              Start free. Upgrade when you&apos;re ready to scale.
+            <p className="text-zinc-400 text-sm sm:text-base max-w-2xl mx-auto mb-7">
+              We keep all plan details on a single pricing page so you always
+              see the latest plans and limits.
             </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {pricingPlans.map((plan) => (
-              <div
-                key={plan.name}
-                className={`relative rounded-2xl border p-6 flex flex-col ${
-                  plan.highlight
-                    ? "border-violet-500/50 bg-violet-600/8 shadow-lg shadow-violet-500/10"
-                    : "border-white/8 bg-white/3"
-                }`}
-              >
-                {plan.highlight && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-violet-600 text-white text-xs font-semibold">
-                    Most popular
-                  </div>
-                )}
-                <div className="mb-4">
-                  <p className="text-sm font-semibold text-white mb-1">
-                    {plan.name}
-                  </p>
-                  <div className="flex items-baseline gap-1">
-                    <span className="text-3xl font-bold text-white">
-                      {plan.price}
-                    </span>
-                    <span className="text-xs text-zinc-500">{plan.period}</span>
-                  </div>
-                  <p className="text-xs text-zinc-500 mt-1">{plan.desc}</p>
-                </div>
-                <ul className="space-y-2.5 flex-1 mb-6">
-                  {plan.features.map((f) => (
-                    <li
-                      key={f}
-                      className="flex items-start gap-2 text-xs text-zinc-400"
-                    >
-                      <CheckCircle className="w-3.5 h-3.5 text-violet-400 mt-0.5 shrink-0" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href={plan.ctaHref}
-                  className={`block text-center py-2.5 rounded-xl text-sm font-semibold transition-colors ${
-                    plan.highlight
-                      ? "bg-violet-600 hover:bg-violet-500 text-white"
-                      : "border border-white/10 hover:border-white/25 text-zinc-300 hover:text-white"
-                  }`}
-                >
-                  {plan.cta}
-                </Link>
-              </div>
-            ))}
+            <Link
+              href="/pricing"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-semibold text-sm transition-colors"
+            >
+              View pricing plans
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>
