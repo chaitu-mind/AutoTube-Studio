@@ -26,15 +26,31 @@ export default function DashboardPage() {
   if (!user) return null;
 
   const videosUsed = subscription?.videosGenerated ?? 0;
-  const videosLimit = subscription?.videosLimit ?? 3;
+  const videosLimit = subscription?.videosLimit ?? 5;
   const plan = subscription?.plan ?? "free";
   const unlimited = videosLimit === -1;
   const usagePct = unlimited
     ? 0
     : Math.min((videosUsed / videosLimit) * 100, 100);
 
+  // Trial countdown (only for free plan)
+  const trialEndsAt = subscription?.trialEndsAt
+    ? new Date(subscription.trialEndsAt)
+    : null;
+  const trialDaysLeft =
+    plan === "free" && trialEndsAt
+      ? Math.max(
+          0,
+          Math.ceil(
+            (trialEndsAt.getTime() - Date.now()) / (1000 * 60 * 60 * 24),
+          ),
+        )
+      : null;
+  const trialExpired =
+    plan === "free" && trialEndsAt && trialEndsAt < new Date();
+
   const PLAN_LABELS: Record<string, string> = {
-    free: "Hobby",
+    free: "Free Trial",
     creator: "Creator",
     studio: "Studio",
     agency: "Agency",
@@ -95,13 +111,45 @@ export default function DashboardPage() {
                   Unlimited
                 </span>
               )}
+              {plan === "free" && trialDaysLeft !== null && !trialExpired && (
+                <span
+                  className={`text-xs px-2 py-0.5 rounded-full ${
+                    trialDaysLeft <= 2
+                      ? "bg-red-500/20 text-red-400"
+                      : "bg-green-500/20 text-green-400"
+                  }`}
+                >
+                  {trialDaysLeft === 0
+                    ? "Expires today"
+                    : `${trialDaysLeft}d left`}
+                </span>
+              )}
+              {trialExpired && (
+                <span className="text-xs bg-red-500/20 text-red-400 px-2 py-0.5 rounded-full">
+                  Trial ended
+                </span>
+              )}
             </div>
             {isUpgradeable && (
               <Link
                 href="/pricing"
-                className="mt-2 inline-flex items-center gap-1 text-xs text-violet-400 hover:text-violet-300"
+                className={`mt-2 inline-flex items-center gap-1 text-xs ${
+                  trialExpired ||
+                  (plan === "free" &&
+                    trialDaysLeft !== null &&
+                    trialDaysLeft <= 2)
+                    ? "text-red-400 hover:text-red-300"
+                    : "text-violet-400 hover:text-violet-300"
+                }`}
               >
-                Upgrade <ChevronRight className="w-3 h-3" />
+                {trialExpired
+                  ? "Trial expired — upgrade now"
+                  : plan === "free" &&
+                      trialDaysLeft !== null &&
+                      trialDaysLeft <= 2
+                    ? `${trialDaysLeft === 0 ? "Expires today" : `${trialDaysLeft}d left`} — upgrade`
+                    : "Upgrade"}{" "}
+                <ChevronRight className="w-3 h-3" />
               </Link>
             )}
           </div>

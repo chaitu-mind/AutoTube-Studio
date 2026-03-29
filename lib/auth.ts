@@ -13,6 +13,7 @@ export interface Subscription {
   videosGenerated: number;
   videosLimit: number;
   renewsAt?: string;
+  trialEndsAt?: string; // only for plan === 'free'; ISO date string
 }
 
 export interface LoginPayload {

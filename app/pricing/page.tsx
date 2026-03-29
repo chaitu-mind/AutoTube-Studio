@@ -19,33 +19,6 @@ import { Footer } from "@/components/Footer";
 
 const PLANS = [
   {
-    id: "free",
-    icon: Zap,
-    name: "Hobby",
-    monthlyPrice: 0,
-    annualPrice: 0,
-    annualPerMonth: 0,
-    period: "forever",
-    desc: "Try AutoTube Studio with no commitment",
-    cta: "Start for free",
-    ctaHref: "/register",
-    highlight: false,
-    badge: null,
-    roi: null,
-    features: [
-      { text: "3 video generations / month", included: true },
-      { text: "Up to 5 min per video", included: true },
-      { text: "1 YouTube channel", included: true },
-      { text: "720p export", included: true },
-      { text: "All 14 AI agents (local)", included: true },
-      { text: "AutoTube watermark on thumbnails", included: true },
-      { text: "No watermark", included: false },
-      { text: "Custom voice profiles", included: false },
-      { text: "Batch scheduling", included: false },
-      { text: "Priority support", included: false },
-    ],
-  },
-  {
     id: "creator",
     icon: TrendingUp,
     name: "Creator",
@@ -137,12 +110,16 @@ const FAQS = [
     a: "Your computer. AutoTube Studio runs the entire 14-agent AI pipeline locally using Ollama and ComfyUI. There are no per-video cloud compute charges — your subscription unlocks the software and enforces a fair-use quota.",
   },
   {
-    q: "Why does a desktop app need a login?",
-    a: "The login enforces your monthly generation quota, prevents account sharing across unlimited machines, and auto-resets your counter on your billing date. You only need internet for the startup license check — not for each video generation.",
+    q: "What does the 7-day free trial include?",
+    a: "The trial gives you 5 video generations and full access to all Creator-level features for 7 days — no credit card required. After the trial ends you can upgrade to Creator, Studio, or Agency to keep creating.",
   },
   {
-    q: "What happens when I hit my video limit?",
-    a: "The app pauses generation and shows an upgrade prompt. Your projects, channels, and settings are never deleted. Upgrade anytime — the new quota unlocks instantly.",
+    q: "Does my trial automatically convert to a paid plan?",
+    a: "No. We never charge you without explicit action. When the 7-day trial expires the app shows an upgrade prompt. Your account, channel connections, and project settings are saved so nothing is lost.",
+  },
+  {
+    q: "Why does a desktop app need a login?",
+    a: "The login enforces your monthly generation quota, prevents account sharing across unlimited machines, and auto-resets your counter on your billing date. You only need internet for the startup license check — not for each video generation.",
   },
   {
     q: "What is the annual billing discount?",
@@ -151,10 +128,6 @@ const FAQS = [
   {
     q: "Can I cancel anytime?",
     a: "Yes. Cancel from your dashboard — no phone calls, no dark patterns. Your plan stays active until the end of the current billing period.",
-  },
-  {
-    q: "Can I use it on multiple machines?",
-    a: "Yes — up to 2 devices per account simultaneously. The same email/password works on your desktop and laptop.",
   },
 ];
 
@@ -178,11 +151,21 @@ export default function PricingPage() {
           Plans that grow{" "}
           <span className="gradient-text">with your channel</span>
         </h1>
-        <p className="text-white/50 text-lg max-w-2xl mx-auto mb-10">
+        <p className="text-white/50 text-lg max-w-2xl mx-auto mb-6">
           Every plan includes the full 14-agent AI pipeline running locally on
           your machine. You provide the hardware — we provide the intelligence.
           No per-video cloud fees, ever.
         </p>
+
+        {/* 7-day free trial callout */}
+        <div className="inline-flex items-center gap-3 bg-green-500/10 border border-green-500/25 rounded-xl px-6 py-3 mb-10">
+          <Zap size={16} className="text-green-400 shrink-0" />
+          <p className="text-sm text-green-300">
+            <span className="font-semibold">Start your 7-day free trial</span> —
+            5 videos, full Creator features.{" "}
+            <span className="text-green-400/70">No credit card required.</span>
+          </p>
+        </div>
 
         {/* Monthly / Annual toggle */}
         <div className="inline-flex items-center gap-1 bg-white/5 border border-white/10 rounded-full p-1">
@@ -213,8 +196,8 @@ export default function PricingPage() {
       </section>
 
       {/* Plans grid */}
-      <section className="max-w-7xl mx-auto px-4 pb-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+      <section className="max-w-6xl mx-auto px-4 pb-24">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {PLANS.map((plan) => {
             const Icon = plan.icon;
             const displayPrice =
@@ -226,9 +209,7 @@ export default function PricingPage() {
             const billingNote =
               annual && plan.annualPrice
                 ? `₹${plan.annualPrice.toLocaleString("en-IN")} billed annually`
-                : plan.monthlyPrice === 0
-                  ? "free forever"
-                  : "billed monthly";
+                : "billed monthly";
 
             return (
               <div
@@ -346,13 +327,20 @@ export default function PricingPage() {
         </div>
 
         {/* Footer note */}
-        <p className="mt-10 text-center text-white/30 text-sm">
-          All plans require a valid account login on the desktop app. •{" "}
-          <Link href="/download" className="underline hover:text-white/60">
-            Download the app
-          </Link>{" "}
-          • Pricing in INR incl. GST • Cancel anytime
-        </p>
+        {/* Trial note */}
+        <div className="mt-10 flex flex-col items-center gap-2">
+          <p className="text-white/30 text-sm">
+            All plans require a valid account login on the desktop app. •{" "}
+            <Link href="/download" className="underline hover:text-white/60">
+              Download the app
+            </Link>{" "}
+            • Pricing in INR incl. GST • Cancel anytime
+          </p>
+          <p className="text-green-500/60 text-xs">
+            ✓ 7-day free trial on all new accounts • No credit card required •
+            Trial expires, never auto-charges
+          </p>
+        </div>
       </section>
 
       {/* Why login required */}
@@ -404,10 +392,16 @@ export default function PricingPage() {
                 <th className="text-left py-3 px-4 text-white/40 font-normal w-1/3">
                   Feature
                 </th>
-                {["Hobby", "Creator", "Studio", "Agency"].map((n) => (
+                {["Trial (7d)", "Creator", "Studio", "Agency"].map((n) => (
                   <th
                     key={n}
-                    className={`py-3 px-4 text-center font-semibold ${n === "Creator" ? "text-violet-400" : "text-white/70"}`}
+                    className={`py-3 px-4 text-center font-semibold ${
+                      n === "Creator"
+                        ? "text-violet-400"
+                        : n === "Trial (7d)"
+                          ? "text-green-400"
+                          : "text-white/70"
+                    }`}
                   >
                     {n}
                   </th>
@@ -416,10 +410,10 @@ export default function PricingPage() {
             </thead>
             <tbody>
               {[
-                ["Videos / month", "3", "20", "60", "∞"],
-                ["Max video length", "5 min", "15 min", "30 min", "30 min"],
+                ["Videos", "5 / 7 days", "20 / mo", "60 / mo", "∞"],
+                ["Max video length", "15 min", "15 min", "30 min", "30 min"],
                 ["YouTube channels", "1", "3", "10", "∞"],
-                ["Export quality", "720p", "1080p", "4K", "4K"],
+                ["Export quality", "1080p", "1080p", "4K", "4K"],
                 ["Watermark", "Yes", "No", "No", "No"],
                 ["Custom voice", "—", "✓", "✓", "✓"],
                 ["Batch scheduling", "—", "—", "30/batch", "∞"],
@@ -434,7 +428,13 @@ export default function PricingPage() {
                   {cells.map((c, ci) => (
                     <td
                       key={ci}
-                      className={`py-3 px-4 text-center ${ci === 1 ? "text-violet-300 font-medium" : "text-white/60"}`}
+                      className={`py-3 px-4 text-center ${
+                        ci === 0
+                          ? "text-green-400/80"
+                          : ci === 1
+                            ? "text-violet-300 font-medium"
+                            : "text-white/60"
+                      }`}
                     >
                       {c}
                     </td>
@@ -482,16 +482,18 @@ export default function PricingPage() {
           <h2 className="text-3xl font-bold mb-4">
             Ready to automate your channel?
           </h2>
-          <p className="text-white/50 mb-8">
-            Start free. No credit card required. Upgrade when you&apos;re ready
-            to scale.
+          <p className="text-white/50 mb-2">
+            Start your 7-day free trial today. No credit card required.
+          </p>
+          <p className="text-green-400/70 text-sm mb-8">
+            5 videos • Full Creator features • Trial expires, never auto-charges
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/register"
               className="bg-violet-600 hover:bg-violet-500 text-white px-8 py-3 rounded-xl font-semibold transition-all"
             >
-              Get started free
+              Start 7-day free trial
             </Link>
             <Link
               href="/download"
